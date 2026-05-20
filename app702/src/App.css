@@ -1,0 +1,57 @@
+.containerLogin {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: space-between;
+}
+
+.imagen {
+    width: 50%;
+    height: 100vh;
+    background-image: url('https://images3.alphacoders.com/605/thumb-1920-605991.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.form {
+    width: 50%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+
+/* ESTILOS DEL LAYAOUTH */
+.contenedorHome {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: space-between;
+}
+
+.sidebar {
+    width: 20%;
+    height: 100vh;
+    background-color: rgb(4, 4, 46);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+    padding-top: 5em;
+}
+
+.contenido {
+    width: 80%;
+    height: 100vh;
+    background-color: white;
+    padding: 3em;
+}
+
+
+.mouseClick{
+    cursor: pointer;
+}
