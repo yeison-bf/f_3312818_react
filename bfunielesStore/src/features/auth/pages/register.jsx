@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -21,6 +22,7 @@ export const Register = () => {
         username: '',
         password: '',
         confirmPassword: '',
+        roleId: 2
     });
 
     const handleChange = (e) => {
@@ -38,17 +40,24 @@ export const Register = () => {
         setStep(step - 1);
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
+        console.log(formData)
+        try {
+            const response = await axios.post('http://localhost:3001/api/auth/register', formData)
 
-        const datosUsuarios = JSON.parse(localStorage.getItem("datosUsuarios")) || []
-        datosUsuarios.push(formData)
-        localStorage.setItem("datosUsuarios", JSON.stringify(datosUsuarios))
-        navigate("/login")
-
-        // Aquí iría la lógica de registro
-    }; 
+            if(response.data.status){
+                alert(response.data.message)
+                navigate('/login')
+            }else{
+                alert("Error en el registro")
+            }
+            
+        } catch (error) {
+            console.error("Error en el proceso: ", error)
+        }
+    };
 
     const IniciarSeccion = (e) => {
         e.preventDefault()

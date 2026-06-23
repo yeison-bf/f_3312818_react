@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -7,14 +8,15 @@ export const Login = () => {
   const [password, setPassword] = useState('');
   const [rememberMe, setRememberMe] = useState(false);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log('Login attempt:', { email, password, rememberMe });
 
-    const dataUsuarios = JSON.parse(localStorage.getItem("datosUsuarios")) || []
-    const auth = dataUsuarios.find(u => u.email === email && u.password === password) 
-    if (auth) {
-    navigate('/dashboard/home')
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const response = await axios.post('http://localhost:3001/api/auth/login', { email, password })
+
+    console.log(response)
+    if (response?.data?.token) {
+      localStorage.setItem('jwt', (response.data.token))
+      navigate('/dashboard/home')
     }
     // Limpiar campos
     setEmail("")
